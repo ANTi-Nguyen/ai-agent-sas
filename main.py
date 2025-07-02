@@ -102,9 +102,12 @@ async def sdr_agent(request: Request):
 @app.post("/closer")
 async def closer_agent(request: Request):
     body = await request.json()
-    contacts = body.get("contacts", [])
-    log_interaction("SDRAgent", "CloserAgent", str(contacts))
-    return {"agent": "CloserAgent", "message": f"Closed deals with {len(contacts)} contacts."}
+    leads = body.get("engagedLeads")
+    log_interaction("SDRAgent", "CloserAgent", leads)
+    return {
+        "agent": "CloserAgent",
+        "message": f"Converted {leads} into paying customers for GLP-1 campaign"
+    }
 
 @app.post("/coo")
 async def coo_agent(request: Request):
