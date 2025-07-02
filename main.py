@@ -31,7 +31,10 @@ async def cmo_agent(request: Request):
     body = await request.json()
     prompt = body.get("prompt")
     log_interaction("CEOAgent", "CMOAgent", prompt)
-    return {"agent": "CMOAgent", "message": f"CMO received: '{prompt}' and is assigning tasks to all agents."}
+    return {
+        "agent": "CMOAgent",
+        "message": prompt  # return clean prompt
+    }
 
 @app.post("/cro")
 async def cro_agent(request: Request):
