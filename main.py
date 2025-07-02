@@ -62,9 +62,13 @@ async def paid_media_agent(request: Request):
 @app.post("/web-ux")
 async def web_ux_agent(request: Request):
     body = await request.json()
-    campaign = body.get("campaign")
-    log_interaction("CMOAgent", "WebUXAgent", campaign)
-    return {"agent": "WebUXAgent", "message": f"Web UX optimized for: {campaign}"}
+    prompt = body.get("mediaPlan")
+    log_interaction("PaidMediaAgent", "WebUXAgent", prompt)
+    return {
+        "agent": "WebUXAgent",
+        "message": f"Website UX plan created based on: {prompt}"
+    }
+}
 
 @app.post("/scraper")
 async def scraper_agent(request: Request):
