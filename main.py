@@ -82,9 +82,12 @@ async def scraper_agent(request: Request):
 @app.post("/crm")
 async def crm_agent(request: Request):
     body = await request.json()
-    leads = body.get("leads", [])
-    log_interaction("ScrapingAgent", "CRMAgent", str(leads))
-    return {"agent": "CRMAgent", "message": f"Logged {len(leads)} leads."}
+    contacts = body.get("contacts")
+    log_interaction("ScraperAgent", "CRMAgent", contacts)
+    return {
+        "agent": "CRMAgent",
+        "message": f"CRM updated with {contacts}"
+    }
 
 @app.post("/sdr")
 async def sdr_agent(request: Request):
