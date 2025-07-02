@@ -52,9 +52,12 @@ async def creative_agent(request: Request):
 @app.post("/paid-media")
 async def paid_media_agent(request: Request):
     body = await request.json()
-    campaign = body.get("campaign")
-    log_interaction("CMOAgent", "PaidMediaAgent", campaign)
-    return {"agent": "PaidMediaAgent", "message": f"Paid ads planned for: {campaign}"}
+    prompt = body.get("creative")
+    log_interaction("CreativeAgent", "PaidMediaAgent", prompt)
+    return {
+        "agent": "PaidMediaAgent",
+        "message": f"Paid media strategy created for: {prompt}"
+    }
 
 @app.post("/web-ux")
 async def web_ux_agent(request: Request):
