@@ -17,6 +17,10 @@ def log_interaction(sender, recipient, message):
     agent_log.append(entry)
     return entry
 
+@app.get("/")
+async def root():
+    return {"message": "🚀 AI Agent SaaS is running on Render!"}
+
 @app.post("/ceo")
 async def ceo_agent(request: Request):
     body = await request.json()
