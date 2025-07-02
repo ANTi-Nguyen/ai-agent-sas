@@ -72,9 +72,12 @@ async def web_ux_agent(request: Request):
 @app.post("/scraper")
 async def scraper_agent(request: Request):
     body = await request.json()
-    campaign = body.get("campaign")
-    log_interaction("WebUXAgent", "ScrapingAgent", campaign)
-    return {"agent": "ScrapingAgent", "message": f"Leads scraped for campaign: {campaign}"}
+    target = body.get("target")
+    log_interaction("WebUXAgent", "ScraperAgent", target)
+    return {
+        "agent": "ScraperAgent",
+        "message": f"Scraped 500 contacts from {target}"
+    }
 
 @app.post("/crm")
 async def crm_agent(request: Request):
