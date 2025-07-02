@@ -119,13 +119,16 @@ async def coo_agent(request: Request):
         "message": f"Service delivery initiated for: {deliverables}"
     }
 
-@app.post("/measure")
-async def measurement_agent(request: Request):
+@app.post("/cmo")
+async def cmo_agent(request: Request):
     body = await request.json()
-    campaign = body.get("campaign")
-    log_interaction("COOAgent", "CMO/CROAgent", campaign)
-    return {"agent": "CMO/CROAgent", "message": f"Measured performance for: {campaign}"}
-
+    prompt = body.get("prompt")
+    log_interaction("COOAgent", "CMOAgent", prompt)
+    decision = f"Based on inputs, best next step: Launch campaign for '{prompt}'"
+    return {
+        "agent": "CMOAgent",
+        "decision": decision
+    }
 @app.get("/log")
 async def get_log():
     return {"log": agent_log}
