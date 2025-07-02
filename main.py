@@ -92,9 +92,12 @@ async def crm_agent(request: Request):
 @app.post("/sdr")
 async def sdr_agent(request: Request):
     body = await request.json()
-    leads = body.get("leads", [])
-    log_interaction("CRMAgent", "SDRAgent", str(leads))
-    return {"agent": "SDRAgent", "message": f"Engaging {len(leads)} leads."}
+    leads = body.get("leads")
+    log_interaction("CRMAgent", "SDRAgent", leads)
+    return {
+        "agent": "SDRAgent",
+        "message": f"Engaged {leads}"
+    }
 
 @app.post("/closer")
 async def closer_agent(request: Request):
