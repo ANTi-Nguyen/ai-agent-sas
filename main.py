@@ -112,9 +112,12 @@ async def closer_agent(request: Request):
 @app.post("/coo")
 async def coo_agent(request: Request):
     body = await request.json()
-    clients = body.get("clients", [])
-    log_interaction("CloserAgent", "COOAgent", str(clients))
-    return {"agent": "COOAgent", "message": f"Service delivery started for {len(clients)} clients."}
+    deliverables = body.get("deliverables")
+    log_interaction("CloserAgent", "COOAgent", deliverables)
+    return {
+        "agent": "COOAgent",
+        "message": f"Service delivery initiated for: {deliverables}"
+    }
 
 @app.post("/measure")
 async def measurement_agent(request: Request):
