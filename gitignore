@@ -1,20 +1,51 @@
-# Python
+# Byte-compiled / cache files
 __pycache__/
 *.py[cod]
-*.egg
-*.egg-info/
-dist/
-build/
+*.pyo
+*.pyd
+*.pdb
+
+# Virtual environment
 .env
-venv/
 .env.*
+venv/
+.venv/
+
+# Logs and test results
 *.log
+coverage/
+htmlcov/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Python Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Editor / IDE files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
 
 # macOS
 .DS_Store
 
-# VSCode
-.vscode/
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
 
-# Render logs or backups
-render.yaml
+# System files
+Thumbs.db
+desktop.ini
+
+# VSCode extensions
+.python-version
+
+# Render logs and backups (but keep render.yaml tracked)
+render-build/
+
+
