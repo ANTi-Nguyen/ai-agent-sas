@@ -68,7 +68,6 @@ async def web_ux_agent(request: Request):
         "agent": "WebUXAgent",
         "message": f"Website UX plan created based on: {prompt}"
     }
-}
 
 @app.post("/scraper")
 async def scraper_agent(request: Request):
