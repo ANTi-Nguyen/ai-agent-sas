@@ -45,9 +45,9 @@ async def cro_agent(request: Request):
 @app.post("/creative")
 async def creative_agent(request: Request):
     body = await request.json()
-    campaign = body.get("campaign")
-    log_interaction("CMOAgent", "CreativeAgent", campaign)
-    return {"agent": "CreativeAgent", "message": f"Creative developed for campaign: {campaign}"}
+    prompt = body.get("strategy")
+    log_interaction("CMOAgent", "CreativeAgent", prompt)
+    return {"agent": "CreativeAgent", "message": f"Creative assets developed for: {prompt}"}
 
 @app.post("/paid-media")
 async def paid_media_agent(request: Request):
