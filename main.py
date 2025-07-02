@@ -108,3 +108,8 @@ async def scheduler_agent(request: Request):
 @app.get("/log")
 async def get_log():
     return {"log": agent_log}
+    
+@app.get("/")
+async def root():
+    return {"status": "AI Agent SaaS is running"}
+
