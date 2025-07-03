@@ -120,14 +120,23 @@ async def final_cmo_agent(request: Request):
     decision = f"Final CMO Decision based on:\n{prompt}\n\nRecommended Action: Launch optimized campaign with CRM + Scheduler insights."
     return {"agent": "CMOAgentFinal", "message": decision}
 
-@app.post("/ceo-final")
-async def final_ceo_agent(request: Request):
-    body = await request.json()
-    decision = body.get("decision", "")
-    final_message = f"CEO received final decision: {decision}"
-    log_interaction("CMOAgent", "CEOAgent", final_message)
-    return {"agent": "CEOAgent", "message": final_message}
+# 👇 Define this at the bottom of your main.py
+class FinalDecision(BaseModel):
+    message: str
+    agent: str
 
+@app.post("/ceo-final")
+async def receive_final_decision(data: FinalDecision):
+    print("\n🧠 Final Decision Received by CEO:")
+    print(f"Agent: {data.agent}")
+    print(f"Message:\n{data.message}\n")
+
+    return {
+        "status": "success",
+        "message": f"CEO received final decision from {data.agent}",
+        "summary": data.message
+    }
+    
 @app.get("/")
 async def root():
     return {"status": "AI Agent SaaS is running"}
