@@ -120,7 +120,6 @@ async def final_cmo_agent(request: Request):
     decision = f"Final CMO Decision based on:\n{prompt}\n\nRecommended Action: Launch optimized campaign with CRM + Scheduler insights."
     return {"agent": "CMOAgentFinal", "message": decision}
 
-# 👇 Define this at the bottom of your main.py
 class FinalDecision(BaseModel):
     message: str
     agent: str
