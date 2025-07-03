@@ -1,5 +1,6 @@
 # AI Agent SaaS Core Framework (Fully Dynamic, Collaborative 24/7 Loop)
 from fastapi import FastAPI, Request
+from pydantic import BaseModel
 import datetime
 
 app = FastAPI()
