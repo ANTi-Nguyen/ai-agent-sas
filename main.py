@@ -112,6 +112,14 @@ async def scheduler_agent(request: Request):
 async def get_log():
     return {"log": agent_log}
     
+@app.post("/cmo-final")
+async def final_cmo_agent(request: Request):
+    body = await request.json()
+    prompt = body.get("prompt")
+    log_interaction("SchedulerAgent + CRMAgent", "CMOAgentFinal", prompt)
+    decision = f"Final CMO Decision based on:\n{prompt}\n\nRecommended Action: Launch optimized campaign with CRM + Scheduler insights."
+    return {"agent": "CMOAgentFinal", "message": decision}
+    
 @app.get("/")
 async def root():
     return {"status": "AI Agent SaaS is running"}
