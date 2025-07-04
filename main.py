@@ -127,10 +127,9 @@ class FinalDecision(BaseModel):
 
 @app.post("/ceo-final")
 async def receive_final_decision(data: FinalDecision):
-    print("\n🧠 Final Decision Received by CEO:")
+    print("🧠 Final Decision Received by CEO")
     print(f"Agent: {data.agent}")
     print(f"Message:\n{data.message}\n")
-
     return {
         "status": "success",
         "message": f"CEO received final decision from {data.agent}",
